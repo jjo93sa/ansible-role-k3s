@@ -1,0 +1,49 @@
+---
+# This file was originally site.yml in Rancher GitHub:
+# https://github.com/rancher/k3s-ansible.git
+# Now inlcudes reset.yml also.
+
+##
+# Tasks that need to be executed on all nodes
+- name: Common k3s installation tasks
+  block:
+    - name: Execute prerequisites task
+      include_tasks: prereq.yml
+
+    - name: Execute download task
+      include_tasks: download.yml
+
+    - name: Execute raspberry pi specific tasks
+      include_tasks: raspberrypi.yml
+  tags: [ k3s-install, k3s-common, always ]
+  become: yes
+
+
+##
+# Tasks that need to be executed only on master node
+- name: Master k3s installation tasks
+  block:
+    - name: Configure master node
+      include_tasks: k3s-master.yml
+  become: yes
+  tags: [ k3s-install, k3s-master, always ]
+  when: "'master' in inventory_hostname"
+
+##
+# Tasks that need to be executed only on worker nodes
+- name: Worker k3s installation tasks
+  block:
+    - name: Configure worker nodes
+      include_tasks: k3s-worker.yml
+  become: yes
+  tags: [ k3s-install, k3s-worker, always ]
+  when: "'worker' in inventory_hostname"
+
+##
+# Tasks to reset the cluster
+- name: k3s reset tasks
+  block:
+    - name: Reset all nodes
+      include_tasks: reset.yml
+  tags: [ k3s-reset, k3s-common, never ]
+  become: yes

@@ -1,4 +1,7 @@
 ---
+# This file was originally roles/prereq/tasks/main.yml in the Rancher GitHub:
+# https://github.com/rancher/k3s-ansible.git
+
 - name: Set SELinux to disabled state
   selinux:
     state: disabled

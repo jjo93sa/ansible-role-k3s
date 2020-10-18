@@ -1,4 +1,7 @@
 ---
+# This file was originally roles/raspberrypi/tasks/prereq/Ubuntu.yml in Rancher
+# GitHub: https://github.com/rancher/k3s-ansible.git
+
 - name: Enable cgroup via boot commandline if not already enabled for Ubuntu on a Raspberry Pi
   lineinfile:
     path: /boot/firmware/cmdline.txt

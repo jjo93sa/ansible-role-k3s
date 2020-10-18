@@ -1,0 +1,6 @@
+---
+# This file was originally roles/raspberrypi/handlers/main.yml in Rancher
+# GitHub: https://github.com/rancher/k3s-ansible.git
+
+- name: reboot
+  reboot:

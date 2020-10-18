@@ -1,4 +1,6 @@
 ---
+# This file was originally called roles/download/tasks/main.yml in Rancher
+# GitHub: https://github.com/rancher/k3s-ansible.git
 
 - name: Download k3s binary x64
   get_url:

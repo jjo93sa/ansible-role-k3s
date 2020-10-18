@@ -1,4 +1,7 @@
 ---
+# This file was originally roles/raspberrypi/tasks/prereq/Raspbian.yml in
+# Rancher GitHub: https://github.com/rancher/k3s-ansible.git
+
 - name: Activating cgroup support
   lineinfile:
     path: /boot/cmdline.txt
