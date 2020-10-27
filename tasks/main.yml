@@ -45,5 +45,5 @@
   block:
     - name: Reset all nodes
       include_tasks: reset.yml
-  tags: [ k3s-reset, k3s-common, never ]
+  tags: [ k3s-reset, never ]
   become: yes
